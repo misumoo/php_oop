@@ -1,12 +1,5 @@
-Will become a heading
+PHP OOP Training
 ==============
 
-Will become a sub heading
---------------
-
-*This will be Italic*
-
-**This will be Bold**
-
-- This will be a list item
-- This will be a list item
+Object programming with Lynda.com
+http://www.lynda.com/PHP-tutorials/Welcome/107953/113287-4.html

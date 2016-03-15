@@ -66,6 +66,33 @@ class Address {
   }
 
   /*
+   * Constructor.
+   * @param type $data Optional array of property names and value
+   */
+  function __construct($data = array()) {
+    $this->_time_created = time();
+
+    // Insure the address can be populated
+    if(!is_array($data)) {
+      trigger_error('Unable to construct address with a ' . get_class($name));
+    }
+
+    // If there is at least one value, populate the Address with it.
+    if(count($data) > 0) {
+      foreach($data as $name => $value) {
+        //special case for protected properties
+        if(in_array($name, array(
+          'time_created',
+          'time_updated',
+        ))) {
+          $name = '_' . $name;
+        }
+        $this->$name = $value;
+      }
+    }
+  }
+
+  /*
    * Guess the postal code based on subdivision and city name
    * @todo Replace with DB lookup
    * @return string

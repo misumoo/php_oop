@@ -32,3 +32,15 @@ echo $address->display();
 echo "<h2>Testing Magic __get and __set</h2>";
 unset($address->postal_code);
 echo $address->display();
+
+echo "<h2>Testing __construct with an array</h2>";
+$address2 = new Address(array(
+  'street_address_1' => '123 Phony Avenue',
+  'city_name' => 'VillageLand',
+  'subdivision_name' => 'Region',
+  'postal_code' => '67980',
+  'country_name' => 'Canada'
+));
+
+echo $address2->display();
+

@@ -41,6 +41,7 @@ $address2 = new Address(array(
   'postal_code' => '67980',
   'country_name' => 'Canada'
 ));
-
 echo $address2->display();
 
+echo "<h2>Address __toString</h2>";
+echo $address2;

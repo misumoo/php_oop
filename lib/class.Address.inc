@@ -66,6 +66,14 @@ class Address {
   }
 
   /*
+   *  Magic __toString
+   *  @return string
+   */
+  function __toString()  {
+    return $this->display();
+  }
+
+  /*
    * Constructor.
    * @param type $data Optional array of property names and value
    */

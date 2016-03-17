@@ -45,3 +45,6 @@ echo $address2->display();
 
 echo "<h2>Address __toString</h2>";
 echo $address2;
+
+echo "<h2>Display address types</h2>";
+echo "<pre>" . var_export(Address::$valid_address_types) . "</pre>";

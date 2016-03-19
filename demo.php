@@ -24,6 +24,7 @@ $address->city_name = 'Townsville';
 $address->subdivision_name = 'State';
 $address->postal_code = '12345';
 $address->country_name = 'United States of America';
+$address->address_type_id = 4;
 echo "<pre>" . var_export($address, true) . "</pre>";
 
 echo "<h2>Display Address</h2>";
@@ -48,3 +49,10 @@ echo $address2;
 
 echo "<h2>Display address types</h2>";
 echo "<pre>" . var_export(Address::$valid_address_types) . "</pre>";
+
+echo "<h2>Testing Type ID Validation</h2>";
+for ($id = 0; $id <= 4; $id++) {
+  echo "<div>$id:";
+  echo Address::isValidAddressTypeId($id) ? 'Valid' : 'Invalid';
+  echo "</div>";
+}

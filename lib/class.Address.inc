@@ -35,6 +35,9 @@ class Address {
   // Primary key of an Address
   protected $_address_id;
 
+  // Address Type ID
+  protected $_address_type_id;
+
   // When the record was created and last updated.
   protected $_time_created;
   protected $_time_updated;
@@ -67,13 +70,19 @@ class Address {
    * @param mixed $value
    */
   function __set($name, $value) {
-    //allow anything to set the postal code
+    // Only set address id if it is a valid address type
+    if($name == 'address_type_id') {
+      $this->_setAddressTypeId($value);
+      return;
+    }
+
+    // Allow anything to set the postal code
     if('postal_code' == $name) {
       $this->$name = $value;
       return;
     }
 
-    //Unable to access property; trigger error
+    // Unable to access property; trigger error
     trigger_error('Undefined or unallowed property via __set(): ' . $name);
   }
 
@@ -144,6 +153,25 @@ class Address {
     $output .= $this->country_name;
 
     return $output;
+  }
+
+  /**
+   * Determine if an address type is valid
+   * @param int $address_type_id
+   * @return boolean
+   */
+  static public function isValidAddressTypeId($address_type_id) {
+    return array_key_exists($address_type_id, self::$valid_address_types);
+  }
+
+  /**
+   * If valid, set the address type id
+   * @param int $address_type_id
+   */
+  protected function _setAddressTypeId($address_type_id) {
+    if(self::isValidAddressTypeId($address_type_id)) {
+      $this->_address_type_id = $address_type_id;
+    }
   }
 }
 

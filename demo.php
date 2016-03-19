@@ -10,49 +10,25 @@
  *
  */
 
-require("lib/class.Address.inc");
+require 'lib/class.Address.inc';
+require 'lib/class.Database.inc.php';
 
 echo "<h2>Instantiating Address</h2>";
 $address = new Address();
-
-echo "<h2>Empty Address</h2>";
-echo "<pre>" . var_export($address, true) . "</pre>";
 
 echo "<h2>Setting Properties</h2>";
 $address->street_address_1 = '555 Fake Street';
 $address->city_name = 'Townsville';
 $address->subdivision_name = 'State';
-$address->postal_code = '12345';
 $address->country_name = 'United States of America';
-$address->address_type_id = 4;
-echo "<pre>" . var_export($address, true) . "</pre>";
-
-echo "<h2>Display Address</h2>";
-echo $address->display();
-
-echo "<h2>Testing Magic __get and __set</h2>";
-unset($address->postal_code);
-echo $address->display();
+$address->address_type_id = 3;
+echo $address;
 
 echo "<h2>Testing __construct with an array</h2>";
 $address2 = new Address(array(
   'street_address_1' => '123 Phony Avenue',
   'city_name' => 'VillageLand',
   'subdivision_name' => 'Region',
-  'postal_code' => '67980',
   'country_name' => 'Canada'
 ));
-echo $address2->display();
-
-echo "<h2>Address __toString</h2>";
 echo $address2;
-
-echo "<h2>Display address types</h2>";
-echo "<pre>" . var_export(Address::$valid_address_types) . "</pre>";
-
-echo "<h2>Testing Type ID Validation</h2>";
-for ($id = 0; $id <= 4; $id++) {
-  echo "<div>$id:";
-  echo Address::isValidAddressTypeId($id) ? 'Valid' : 'Invalid';
-  echo "</div>";
-}

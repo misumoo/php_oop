@@ -1,6 +1,6 @@
 <?php
 
-/*
+/**
  * Physical Address
  */
 class Address {
@@ -127,7 +127,21 @@ class Address {
    * @return string
    */
   protected function _postal_code_guess() {
-    return 'LOOKUP';
+    $db = Database::getInstance();
+    $mysqli = $db->getConnection();
+
+    $city_name = $mysqli->real_escape_string($this->city_name);
+    $subdivision_name = $mysqli->real_escape_string($this->subdivision_name);
+
+    $sql = "SELECT postal_code FROM location ";
+    $sql .= "WHERE city_name = '" . $city_name . "' ";
+    $sql .= "AND subdivision_name = '" . $subdivision_name . "' ";
+
+    $result = $mysqli->query($sql);
+
+    if($row = $result->fetch_assoc()) {
+      return $row['postal_code'];
+    }
   }
 
   /*

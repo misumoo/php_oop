@@ -42,7 +42,7 @@ class Address {
   protected $_time_created;
   protected $_time_updated;
 
-  /*
+  /**
    * Magic __get.
    * @param string $name
    * @return mixed
@@ -64,7 +64,7 @@ class Address {
     return NULL;
   }
 
-  /*
+  /**
    * Magic __set
    * @param string $name
    * @param mixed $value
@@ -86,15 +86,15 @@ class Address {
     trigger_error('Undefined or unallowed property via __set(): ' . $name);
   }
 
-  /*
-   *  Magic __toString
-   *  @return string
+  /**
+   * Magic __toString
+   * @return string
    */
   function __toString()  {
     return $this->display();
   }
 
-  /*
+  /**
    * Constructor.
    * @param type $data Optional array of property names and value
    */
@@ -123,7 +123,6 @@ class Address {
 
   /*
    * Guess the postal code based on subdivision and city name
-   * @todo Replace with DB lookup
    * @return string
    */
   protected function _postal_code_guess() {
@@ -144,7 +143,7 @@ class Address {
     }
   }
 
-  /*
+  /**
    * Return HTML display for address.
    * @return string
    */

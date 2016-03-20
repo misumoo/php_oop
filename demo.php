@@ -10,19 +10,28 @@
  *
  */
 
-require 'lib/class.Address.inc';
-require 'lib/class.Database.inc.php';
+//require 'lib/class.Address.inc';
+//require 'lib/class.Database.inc';
 
-echo "<h2>Instantiating Address</h2>";
-$address = new Address();
+/**
+ * Define autoloader.
+ * @param $class_name
+ */
+function __autoload($class_name) {
+  require 'lib/class.' . $class_name . '.inc';
+}
+
+echo "<h2>Instantiating AddressResidence</h2>";
+$address_residence = new AddressResidence();
 
 echo "<h2>Setting Properties</h2>";
-$address->street_address_1 = '555 Fake Street';
-$address->city_name = 'Townsville';
-$address->subdivision_name = 'State';
-$address->country_name = 'United States of America';
-$address->address_type_id = 3;
-echo $address;
+$address_residence->street_address_1 = '555 Fake Street';
+$address_residence->city_name = 'Townsville';
+$address_residence->subdivision_name = 'State';
+$address_residence->country_name = 'United States of America';
+$address_residence->address_type_id = 3;
+echo $address_residence;
+echo '<pre>' . var_export($address_residence, TRUE) . '</pre>';
 
 echo "<h2>Testing __construct with an array</h2>";
 $address2 = new Address(array(

@@ -3,7 +3,7 @@
 /**
  * Physical Address
  */
-class Address {
+abstract class Address implements Model {
 
   const ADDRESS_TYPE_RESIDENCE = 1;
   const ADDRESS_TYPE_BUSINESS = 2;
@@ -70,12 +70,6 @@ class Address {
    * @param mixed $value
    */
   function __set($name, $value) {
-    // Only set address id if it is a valid address type
-    if($name == 'address_type_id') {
-      $this->_setAddressTypeId($value);
-      return;
-    }
-
     // Allow anything to set the postal code
     if('postal_code' == $name) {
       $this->$name = $value;
@@ -95,10 +89,16 @@ class Address {
   }
 
   /**
+   * Forced extending classes to implement init method.
+   */
+  abstract protected function _init();
+
+  /**
    * Constructor.
    * @param type $data Optional array of property names and value
    */
   function __construct($data = array()) {
+    $this->_init();
     $this->_time_created = time();
 
     // Insure the address can be populated
@@ -185,6 +185,21 @@ class Address {
     if(self::isValidAddressTypeId($address_type_id)) {
       $this->_address_type_id = $address_type_id;
     }
+  }
+
+  /**
+   * Load an address
+   * @param int $address_id
+   */
+  final public static function load($address_id) {
+
+  }
+
+  /**
+   * Save an address.
+   */
+  final public function save() {
+
   }
 }
 

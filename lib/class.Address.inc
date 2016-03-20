@@ -43,6 +43,14 @@ abstract class Address implements Model {
   protected $_time_updated;
 
   /**
+   * Post clone behavior
+   */
+  function __clone() {
+    $this->_time_created = time();
+    $this->_time_updated = NULL;
+  }
+
+  /**
    * Magic __get.
    * @param string $name
    * @return mixed

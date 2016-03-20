@@ -51,3 +51,9 @@ $address_park = new AddressPark(array(
 ));
 echo $address_park;
 echo "<pre>" . var_export($address_park, TRUE) . "</pre>";
+
+
+echo "<h2>Cloning AddressPark</h2>";
+$address_park_clone = clone $address_park;
+echo "<pre>" . var_export($address_park_clone, TRUE) . "</pre>";
+echo '$address_park_clone is ' . ($address_park == $address_park_clone ? '' : 'not') . ' a copy of $address_park';
